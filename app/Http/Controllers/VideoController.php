@@ -27,6 +27,10 @@ class VideoController extends Controller
 
         Videos::create($formFields);
 
+        // redirection
+
+        return back()->with('message','Video published successfully!');
+
 
     }
 }
