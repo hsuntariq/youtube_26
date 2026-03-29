@@ -1,3 +1,7 @@
+<x-flash />
+
+
+
 <div class="flex justify-between p-5 items-center">
     <div class="logo flex gap-2 items-center">
         <i class="bi bi-list text-2xl"></i>
@@ -54,7 +58,13 @@
                     <i class="bi bi-plus text-2xl"></i>
                     <span>Create</span>
                 </a>
-                {{ auth()->user()->name }}
+                <h5 class="font-semibold">
+                    {{ auth()->user()->name }}
+                </h5>
+                <form action="/logout" method="POST">
+                    @csrf
+                    <button class="bi bi-door-open cursor-pointer"></button>
+                </form>
             @endauth
 
 

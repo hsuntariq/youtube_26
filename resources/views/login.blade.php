@@ -1,7 +1,8 @@
+<x-flash />
 <x-layout>
     <div class="flex min-h-screen bg-[#0f0f0f] justify-center items-center">
 
-        <form action="" method="POST"
+        <form action="/login-user" method="POST"
             class="xl:w-[35%] lg:w-[50%] md:w-[65%] sm:w-[90%] w-[95%] 
                    bg-[#181818] text-white rounded-xl shadow-2xl p-8 space-y-6">
 

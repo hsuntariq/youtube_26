@@ -18,6 +18,34 @@ class UserController extends Controller
         $formFields['password'] = bcrypt($formFields['password']);
         $user = User::create($formFields);
         Auth::login($user);
-        return redirect('/');
+        return redirect('/')->with('message','👋 Welcome to the App!');
      }
+
+
+
+
+    public function logoutUser(){
+        Auth::logout();
+        return redirect('/')->with('message','Hoping to see you again');
+    }
+
+
+    public function loginUser(Request $req){
+        $formFields = [
+            "email" => $req->input('email'),
+            "password" => $req->input('password')
+        ];
+
+
+        if(Auth::attempt($formFields)){
+            return redirect('/')->with('message','👋 Welcome back!');
+        }else{
+            return back()->with('message','🚫 Invalid Credentials !');
+        }
+
+
+    }
+
+
+
 }

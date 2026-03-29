@@ -9,8 +9,12 @@ Route::get('/', function () {
 });
 
 
-Route::view('/studio','studio');
+Route::view('/studio','studio')->middleware('auth');
 Route::view('/register','register');
-Route::view('/login','login');
+Route::view('/login','login')->name('login');
 Route::post('/upload-video',[VideoController::class,'uploadVideo']);
 Route::post('/register-user',[UserController::class,'registerUser']);
+Route::post('/logout',[UserController::class,'logoutUser']);
+Route::post('/login-user',[UserController::class,'loginUser']);
+
+Route::get('/',[VideoController::class,'getVideos']);

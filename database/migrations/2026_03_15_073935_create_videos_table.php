@@ -66,6 +66,11 @@ return new class extends Migration
 
             $table->timestamps();
             $table->softDeletes();   // many platforms soft-delete videos instead of hard delete
+
+            
+
+
+
         });
     }
 
