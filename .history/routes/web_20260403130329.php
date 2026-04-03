@@ -19,4 +19,3 @@ Route::post('/logout', [UserController::class, 'logoutUser']);
 Route::post('/login-user', [UserController::class, 'loginUser']);
 
 Route::get('/', [VideoController::class, 'getVideos']);
-Route::get('/watch/{id}', [VideoController::class, 'getSingleVideo']);

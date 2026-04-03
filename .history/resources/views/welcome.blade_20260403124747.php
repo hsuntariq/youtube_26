@@ -56,7 +56,7 @@
             <div class="grid w-full rounded-md  gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {{-- my videos --}}
                 @foreach ($allVideos as $item)
-                    <a href="/watch/{{ $item['id'] }}"
+                    <div
                         class="single-video hover:bg-gray-900 p-3 rounded-xl transition-all duration-200 cursor-pointer py-3">
                         <img class="rounded-xl object-cover h-[250px]" height=""
                             src="{{ asset('/storage/' . $item['thumbnail']) }}" width="100%" alt="video thumbnail">
@@ -81,7 +81,7 @@
                             </div>
                             <i class="bi bi-three-dots-vertical"></i>
                         </div>
-                    </a>
+                    </div>
                 @endforeach
 
 

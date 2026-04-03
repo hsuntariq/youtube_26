@@ -56,10 +56,10 @@
             <div class="grid w-full rounded-md  gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {{-- my videos --}}
                 @foreach ($allVideos as $item)
-                    <a href="/watch/{{ $item['id'] }}"
+                    <div
                         class="single-video hover:bg-gray-900 p-3 rounded-xl transition-all duration-200 cursor-pointer py-3">
-                        <img class="rounded-xl object-cover h-[250px]" height=""
-                            src="{{ asset('/storage/' . $item['thumbnail']) }}" width="100%" alt="video thumbnail">
+                        <img class="rounded-xl" src="{{ asset('/storage/' . $item['thumbnail']) }}" width="100%"
+                            alt="video thumbnail">
                         <div class="flex justify-between my-3">
                             <div class="flex gap-2">
                                 <div class="w-10 shrink-0 bg-green-500 h-10 rounded-full"></div>
@@ -81,7 +81,7 @@
                             </div>
                             <i class="bi bi-three-dots-vertical"></i>
                         </div>
-                    </a>
+                    </div>
                 @endforeach
 
 
@@ -94,13 +94,13 @@
 
 
     <script>
-        $('.top-right-icon').on('click', function () {
+        $('.top-right-icon').on('click', function() {
             document.querySelector('.top-bar').scrollBy({
                 left: 100,
                 behavior: 'smooth'
             })
         })
-        $('.top-left-icon').on('click', function () {
+        $('.top-left-icon').on('click', function() {
             document.querySelector('.top-bar').scrollBy({
                 left: -100,
                 behavior: 'smooth'
