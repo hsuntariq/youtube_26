@@ -1,0 +1,33 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Comments;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class CommentController extends Controller
+{
+    public function createComment(Request $req){
+
+
+        // if user is not logged in
+        $user = Auth::user();
+        if(!$user){
+            return redirect('/login');
+        }
+
+        // if the user is logged in
+        $formFields = [
+            "comment" => $req->input('comment'),
+            "video_id" => $req->input('video_id'),
+            "user_id" => $req->input('user_id')
+        ];
+
+
+        Comments::create($formFields);
+        return response()->json([
+            "message" => 'Comment added Successfully!'
+        ]);
+    }
+}

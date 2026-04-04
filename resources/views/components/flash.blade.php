@@ -1,6 +1,6 @@
 @if (session()->has('message'))
     <!-- Flash Message -->
-    <div class="fixed top-5 z-600 right-5 z-50 animate-bounce-in">
+    <div class="fixed top-5 right-5 z-[500] animate-bounce-in">
 
         <div
             class="flex items-center gap-3 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-5 py-3 rounded-xl shadow-2xl border border-green-300">
