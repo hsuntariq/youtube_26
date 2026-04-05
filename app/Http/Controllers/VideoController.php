@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Videos;
+use App\Models\Views;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,14 +21,10 @@ class VideoController extends Controller
             'is_premiere' => $req->input('is_premiere'),
         ];
 
-
-
-
         $formFields['video'] = $req->file('video')->store('videos', 'public');
         $formFields['thumbnail'] = $req->file('thumbnail')->store('thumbnails', 'public');
         $formFields['user_id'] = Auth::id();
         // store the data in the database
-
 
         Videos::create($formFields);
 
@@ -35,25 +32,30 @@ class VideoController extends Controller
 
         return back()->with('message', 'Video published successfully!');
 
-
     }
 
-
     // get the videos from the database
-
 
     public function getVideos()
     {
         $allVideos = Videos::all();
+
         return view('welcome', compact('allVideos'));
     }
-
 
     public function getSingleVideo($id)
     {
         $video = Videos::find($id);
-        return view('single-video', compact('video'));
+        $videoViews = Views::where('video_id', $id)->first();
+        if (! $videoViews) {
+            Views::create([
+                'views' => 1,
+                'video_id' => $id,
+            ]);
+        } else {
+            $videoViews->increment('views');
+        }
+
+        return view('single-video', compact(['video', 'videoViews']));
     }
-
-
 }

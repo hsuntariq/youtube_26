@@ -155,7 +155,8 @@
 
                 <!-- Meta + Actions -->
                 <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
-                    <span class="text-sm text-zinc-400">2.4M views &nbsp;·&nbsp; 3 weeks ago</span>
+                    <span class="text-sm text-zinc-400">{{ $videoViews['views'] ?? 1 }} views &nbsp;·&nbsp; 3 weeks
+                        ago</span>
                     <div class="flex items-center gap-2 flex-wrap">
                         <button id="likeBtn" onclick="toggleLike()"
                             class="like-btn flex items-center gap-2 px-4 py-1.5 rounded-full bg-zinc-800 hover:bg-zinc-700 text-sm font-medium transition-colors border border-zinc-700">
@@ -231,8 +232,8 @@
 
                 <!-- Comments -->
                 <div class="mt-6">
-                    <div class="flex items-center gap-5 mb-5">
-                        <h2 class="text-base font-semibold">3,841 Comments</h2>
+                    <div class="flex comments-count-box items-center gap-5 mb-5">
+                        <h2 class="text-base comment-count font-semibold">3,841 Comments</h2>
                         <button
                             class="flex items-center gap-1.5 text-sm text-zinc-400 hover:text-white transition-colors">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -271,154 +272,13 @@
                     </div>
 
                     <!-- Comments List -->
+                    <x-comments-skeleton />
                     <div id="commentsList" class="space-y-5">
 
+
                         <!-- Comment 1 -->
-                        <div class="flex gap-3">
-                            <div
-                                class="w-9 h-9 rounded-full bg-emerald-600 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
-                                JS</div>
-                            <div class="flex-1">
-                                <p class="text-sm"><span class="font-semibold">@jsmaster99</span> <span
-                                        class="text-zinc-500 text-xs ml-2">2 days ago</span></p>
-                                <p class="text-sm text-zinc-300 mt-1 leading-relaxed">This is hands-down the best
-                                    Next.js
-                                    tutorial I've found. The Prisma integration section alone saved me hours of
-                                    debugging.
-                                    Subscribed immediately!</p>
-                                <div class="flex items-center gap-4 mt-2">
-                                    <button
-                                        class="flex items-center gap-1 text-xs text-zinc-400 hover:text-white transition-colors comment-like"
-                                        onclick="likeComment(this)">
-                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
-                                        </svg>
-                                        <span>843</span>
-                                    </button>
-                                    <button class="text-xs text-zinc-500 hover:text-white transition-colors"
-                                        onclick="toggleReplyForm(this)">Reply</button>
-                                </div>
-                                <div class="reply-form hidden mt-3">
-                                    <input type="text" placeholder="Add a reply..."
-                                        class="w-full bg-transparent border-b border-zinc-700 focus:border-zinc-400 outline-none text-sm py-1 text-zinc-100 placeholder-zinc-500 transition-colors" />
-                                    <div class="flex justify-end gap-2 mt-2">
-                                        <button type='button' onclick="cancelReply(this)"
-                                            class="px-3 py-1 text-xs rounded-full hover:bg-zinc-800 transition-colors text-zinc-400">Cancel</button>
-                                        <button onclick="submitReply(this)"
-                                            class="px-3 py-1 text-xs rounded-full bg-blue-600 hover:bg-blue-500 text-white transition-colors">Reply</button>
-                                    </div>
-                                </div>
-                                <div class="replies mt-3 pl-4 border-l border-zinc-800 space-y-3 hidden">
-                                    <div class="flex gap-2">
-                                        <div
-                                            class="w-7 h-7 rounded-full bg-violet-600 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
-                                            CD</div>
-                                        <div>
-                                            <p class="text-xs"><span
-                                                    class="font-semibold text-blue-400">@CodeWithDev</span>
-                                                <span class="text-zinc-500 ml-1">1 day ago</span>
-                                            </p>
-                                            <p class="text-xs text-zinc-300 mt-1">Thank you so much! Really glad the
-                                                Prisma
-                                                section clicked. More advanced content coming soon 🚀</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <button
-                                    class="text-xs text-blue-400 hover:text-blue-300 mt-2 transition-colors show-replies-btn"
-                                    onclick="toggleReplies(this)">▶ 12 replies</button>
-                            </div>
-                        </div>
 
-                        <!-- Comment 2 -->
-                        <div class="flex gap-3">
-                            <div
-                                class="w-9 h-9 rounded-full bg-amber-600 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
-                                MR</div>
-                            <div class="flex-1">
-                                <p class="text-sm"><span class="font-semibold">@mariadev_codes</span> <span
-                                        class="text-zinc-500 text-xs ml-2">5 days ago</span></p>
-                                <p class="text-sm text-zinc-300 mt-1 leading-relaxed">Finally someone who explains
-                                    server
-                                    components properly. I've watched 10+ tutorials and this is the only one that made
-                                    it
-                                    click for me. Timestamp 6:30 is gold.</p>
-                                <div class="flex items-center gap-4 mt-2">
-                                    <button
-                                        class="flex items-center gap-1 text-xs text-zinc-400 hover:text-white transition-colors comment-like"
-                                        onclick="likeComment(this)">
-                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
-                                        </svg>
-                                        <span>527</span>
-                                    </button>
-                                    <button class="text-xs text-zinc-500 hover:text-white transition-colors"
-                                        onclick="toggleReplyForm(this)">Reply</button>
-                                </div>
-                                <div class="reply-form hidden mt-3">
-                                    <input type="text" placeholder="Add a reply..."
-                                        class="w-full bg-transparent border-b border-zinc-700 focus:border-zinc-400 outline-none text-sm py-1 text-zinc-100 placeholder-zinc-500 transition-colors" />
-                                    <div class="flex justify-end gap-2 mt-2">
-                                        <button onclick="cancelReply(this)"
-                                            class="px-3 py-1 text-xs rounded-full hover:bg-zinc-800 transition-colors text-zinc-400">Cancel</button>
-                                        <button onclick="submitReply(this)"
-                                            class="px-3 py-1 text-xs rounded-full bg-blue-600 hover:bg-blue-500 text-white transition-colors">Reply</button>
-                                    </div>
-                                </div>
-                                <div class="replies mt-3 pl-4 border-l border-zinc-800 space-y-3 hidden"></div>
-                                <button
-                                    class="text-xs text-blue-400 hover:text-blue-300 mt-2 transition-colors show-replies-btn"
-                                    onclick="toggleReplies(this)">▶ 4 replies</button>
-                            </div>
-                        </div>
 
-                        <!-- Comment 3 -->
-                        <div class="flex gap-3">
-                            <div
-                                class="w-9 h-9 rounded-full bg-sky-600 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
-                                TN</div>
-                            <div class="flex-1">
-                                <p class="text-sm"><span class="font-semibold">@techie_noor</span> <span
-                                        class="text-zinc-500 text-xs ml-2">1 week ago</span></p>
-                                <p class="text-sm text-zinc-300 mt-1 leading-relaxed">Quick question — does this
-                                    approach
-                                    work with MySQL instead of PostgreSQL? I'm stuck on the Prisma connection string
-                                    part.
-                                </p>
-                                <div class="flex items-center gap-4 mt-2">
-                                    <button
-                                        class="flex items-center gap-1 text-xs text-zinc-400 hover:text-white transition-colors comment-like"
-                                        onclick="likeComment(this)">
-                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
-                                        </svg>
-                                        <span>91</span>
-                                    </button>
-                                    <button class="text-xs text-zinc-500 hover:text-white transition-colors"
-                                        onclick="toggleReplyForm(this)">Reply</button>
-                                </div>
-                                <div class="reply-form hidden mt-3">
-                                    <input type="text" placeholder="Add a reply..."
-                                        class="w-full bg-transparent border-b border-zinc-700 focus:border-zinc-400 outline-none text-sm py-1 text-zinc-100 placeholder-zinc-500 transition-colors" />
-                                    <div class="flex justify-end gap-2 mt-2">
-                                        <button type="button" onclick="cancelReply(this)"
-                                            class="px-3 py-1 text-xs rounded-full hover:bg-zinc-800 transition-colors text-zinc-400">Cancel</button>
-                                        <button onclick="submitReply(this)"
-                                            class="px-3 py-1 text-xs rounded-full bg-blue-600 hover:bg-blue-500 text-white transition-colors">Reply</button>
-                                    </div>
-                                </div>
-                                <div class="replies mt-3 pl-4 border-l border-zinc-800 space-y-3 hidden"></div>
-                                <button
-                                    class="text-xs text-blue-400 hover:text-blue-300 mt-2 transition-colors show-replies-btn"
-                                    onclick="toggleReplies(this)">▶ 2 replies</button>
-                            </div>
-                        </div>
 
                     </div>
                 </div>
@@ -568,6 +428,105 @@
         <script>
             // ajax
 
+
+            function commentsData(response) {
+                console.log(response)
+                let layout = ''
+                $('.comment-count').html(`${response.commentCount} comments`)
+                // loop over comments
+                response.comments.forEach((item, index) => {
+                    layout += `<div class="flex gap-3">
+                            <div
+                                class="w-9 h-9 rounded-full bg-emerald-600 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
+                                JS</div>
+                            <div class="flex-1">
+                                <p class="text-sm"><span class="font-semibold">${item.user.name}</span> <span
+                                        class="text-zinc-500 text-xs ml-2">
+                                            ${moment(item.created_at).fromNow()}
+                                        </span></p>
+                                <p class="text-sm text-zinc-300 mt-1 leading-relaxed">
+                                      ${item.comment}  
+                                </p>
+                                <div class="flex items-center gap-4 mt-2">
+                                    <button
+                                        class="flex items-center gap-1 text-xs text-zinc-400 hover:text-white transition-colors comment-like"
+                                        onclick="likeComment(this)">
+                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                                        </svg>
+                                        <span>843</span>
+                                    </button>
+                                    <button class="text-xs text-zinc-500 hover:text-white transition-colors"
+                                        onclick="toggleReplyForm(this)">Reply</button>
+                                </div>
+                                <div class="reply-form hidden mt-3">
+                                    <input type="text" placeholder="Add a reply..."
+                                        class="w-full bg-transparent border-b border-zinc-700 focus:border-zinc-400 outline-none text-sm py-1 text-zinc-100 placeholder-zinc-500 transition-colors" />
+                                    <div class="flex justify-end gap-2 mt-2">
+                                        <button type='button' onclick="cancelReply(this)"
+                                            class="px-3 py-1 text-xs rounded-full hover:bg-zinc-800 transition-colors text-zinc-400">Cancel</button>
+                                        <button onclick="submitReply(this)"
+                                            class="px-3 py-1 text-xs rounded-full bg-blue-600 hover:bg-blue-500 text-white transition-colors">Reply</button>
+                                    </div>
+                                </div>
+                                <div class="replies mt-3 pl-4 border-l border-zinc-800 space-y-3 hidden">
+                                    <div class="flex gap-2">
+                                        <div
+                                            class="w-7 h-7 rounded-full bg-violet-600 flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
+                                            CD</div>
+                                        <div>
+                                            <p class="text-xs"><span
+                                                    class="font-semibold text-blue-400">@CodeWithDev</span>
+                                                <span class="text-zinc-500 ml-1">1 day ago</span>
+                                            </p>
+                                            <p class="text-xs text-zinc-300 mt-1">Thank you so much! Really glad the
+                                                Prisma
+                                                section clicked. More advanced content coming soon 🚀</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button
+                                    class="text-xs text-blue-400 hover:text-blue-300 mt-2 transition-colors show-replies-btn"
+                                    onclick="toggleReplies(this)">▶ 12 replies</button>
+                            </div>
+                        </div>`
+                })
+
+                $('#commentsList').html(layout)
+
+
+
+            }
+
+
+
+            // load all the data initially
+
+            $.ajax({
+                url: '/get-comments',
+                type: 'GET',
+                beforeSend: function() {
+                    $('.comments-count-box').addClass('hidden').removeClass('flex')
+                    $('.comments-skeleton').addClass('block').removeClass('hidden')
+
+                },
+                data: {
+                    user_id: $('input[name="user_id"]').val(),
+                    video_id: $('input[name="video_id"]').val(),
+                },
+                success: function(response) {
+                    commentsData(response)
+                    $('.comments-count-box').addClass('flex').removeClass('hidden')
+                    $('.comments-skeleton').addClass('hidden').removeClass('block')
+
+                }
+            })
+
+
+
+
             $('.comment-btn').on('click', function(e) {
                 e.preventDefault()
 
@@ -592,12 +551,20 @@
                     },
                     success: function(response) {
                         console.log(response)
-                        $('.comment-btn').attr('disabled', false),
-                            $('.comment-btn').removeClass('bg-gray-600')
-                        $('.loader').addClass('hidden')
-                        $('.comment-text').removeClass('hidden')
-                        $('input[name="comment"]').val('')
-                        cancelComment()
+                        if (!response) {
+                            window.location.assign('http://localhost:8000/login')
+
+                        } else {
+                            $('.comment-btn').attr('disabled', false),
+                                $('.comment-btn').removeClass('bg-gray-600')
+                            $('.loader').addClass('hidden')
+                            $('.comment-text').removeClass('hidden')
+                            $('input[name="comment"]').val('')
+                            $('.comment-count').html(`${response.commentCount} comments`)
+                            cancelComment()
+
+                            commentsData(response)
+                        }
                     }
                 })
             })
